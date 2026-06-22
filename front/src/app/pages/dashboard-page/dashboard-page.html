@@ -1,0 +1,63 @@
+<h1 *ngIf="evmData">Dashboard: {{ evmData.proyecto_nombre }}</h1>
+<a [routerLink]="['/proyectos', proyectoId, 'actividades']" *ngIf="proyectoId">Gestionar actividades</a>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div *ngIf="evmData">
+  <h2>Indicadores consolidados</h2>
+  <div class="indicadores-grid">
+    <app-evm-status-indicator label="CPI" [value]="evmData.indicadores.cpi" [interpretacion]="evmData.indicadores.cpi_interpretacion"></app-evm-status-indicator>
+    <app-evm-status-indicator label="SPI" [value]="evmData.indicadores.spi" [interpretacion]="evmData.indicadores.spi_interpretacion"></app-evm-status-indicator>
+  </div>
+
+  <table class="resumen">
+    <tr><td>Presupuesto total (BAC)</td><td>{{ evmData.presupuesto_total | number:'1.2f' }}</td></tr>
+    <tr><td>Valor planificado (PV)</td><td>{{ evmData.indicadores.pv | number:'1.2f' }}</td></tr>
+    <tr><td>Valor ganado (EV)</td><td>{{ evmData.indicadores.ev | number:'1.2f' }}</td></tr>
+    <tr><td>Costo real (AC)</td><td>{{ evmData.indicadores.ac | number:'1.2f' }}</td></tr>
+    <tr><td>Variación costo (CV)</td><td [ngClass]="evmData.indicadores.cv < 0 ? 'negativo' : 'positivo'">{{ evmData.indicadores.cv | number:'1.2f' }}</td></tr>
+    <tr><td>Variación cronograma (SV)</td><td [ngClass]="evmData.indicadores.sv < 0 ? 'negativo' : 'positivo'">{{ evmData.indicadores.sv | number:'1.2f' }}</td></tr>
+    <tr *ngIf="evmData.indicadores.eac !== null"><td>Estimado al completar (EAC)</td><td>{{ evmData.indicadores.eac | number:'1.2f' }}</td></tr>
+    <tr *ngIf="evmData.indicadores.vac !== null"><td>Variación al completar (VAC)</td><td [ngClass]="evmData.indicadores.vac < 0 ? 'negativo' : 'positivo'">{{ evmData.indicadores.vac | number:'1.2f' }}</td></tr>
+  </table>
+
+  <h2>Gráfica PV vs EV vs AC</h2>
+  <app-evm-chart [actividades]="actividadesEvm"></app-evm-chart>
+
+  <h2>Actividades</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Actividad</th>
+        <th>BAC</th>
+        <th>PV</th>
+        <th>EV</th>
+        <th>AC</th>
+        <th>CV</th>
+        <th>SV</th>
+        <th>CPI</th>
+        <th>SPI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of actividadesEvm">
+        <td>{{ a.actividad_nombre }}</td>
+        <td>{{ a.indicadores.bac | number:'1.2f' }}</td>
+        <td>{{ a.indicadores.pv | number:'1.2f' }}</td>
+        <td>{{ a.indicadores.ev | number:'1.2f' }}</td>
+        <td>{{ a.indicadores.ac | number:'1.2f' }}</td>
+        <td [ngClass]="a.indicadores.cv < 0 ? 'negativo' : 'positivo'">{{ a.indicadores.cv | number:'1.2f' }}</td>
+        <td [ngClass]="a.indicadores.sv < 0 ? 'negativo' : 'positivo'">{{ a.indicadores.sv | number:'1.2f' }}</td>
+        <td>
+          <span [ngClass]="a.indicadores.cpi !== null ? (a.indicadores.cpi >= 1 ? 'positivo' : 'negativo') : ''">
+            {{ a.indicadores.cpi !== null ? (a.indicadores.cpi | number:'1.2f') : 'N/A' }}
+          </span>
+        </td>
+        <td>
+          <span [ngClass]="a.indicadores.spi !== null ? (a.indicadores.spi >= 1 ? 'positivo' : 'negativo') : ''">
+            {{ a.indicadores.spi !== null ? (a.indicadores.spi | number:'1.2f') : 'N/A' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

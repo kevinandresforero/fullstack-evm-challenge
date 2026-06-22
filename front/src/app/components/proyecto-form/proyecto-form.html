@@ -1,0 +1,11 @@
+<h2>{{ editando ? 'Editar' : 'Nuevo' }} proyecto</h2>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <label>Nombre *<input name="nombre" ngModel [required]="true" [ngModel]="proyecto?.nombre || ''"></label>
+  <label>Descripción<textarea name="descripcion" ngModel [ngModel]="proyecto?.descripcion || ''"></textarea></label>
+  <label>Fecha inicio *<input type="date" name="fecha_inicio" ngModel [required]="true" [ngModel]="proyecto?.fecha_inicio || ''"></label>
+  <label>Fecha fin *<input type="date" name="fecha_fin" ngModel [required]="true" [ngModel]="proyecto?.fecha_fin || ''"></label>
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="cancelar.emit()">Cancelar</button>
+  </div>
+</form>

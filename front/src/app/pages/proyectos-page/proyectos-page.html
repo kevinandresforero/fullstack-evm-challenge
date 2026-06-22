@@ -1,0 +1,27 @@
+<h1>Proyectos</h1>
+<button (click)="abrirFormulario()">+ Nuevo proyecto</button>
+<div *ngIf="error" class="error">{{ error }}</div>
+<app-proyecto-form *ngIf="mostrarFormulario" [proyecto]="proyectoEditando" (guardar)="onGuardar($event)" (cancelar)="onCancelar()"></app-proyecto-form>
+<table *ngIf="proyectos.length > 0">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of proyectos">
+      <td><a [routerLink]="['/dashboard', p.id]">{{ p.nombre }}</a></td>
+      <td>{{ p.fecha_inicio }}</td>
+      <td>{{ p.fecha_fin }}</td>
+      <td>{{ p.estado }}</td>
+      <td>
+        <button (click)="editar(p)">Editar</button>
+        <button (click)="eliminar(p.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

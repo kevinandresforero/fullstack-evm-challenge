@@ -1,0 +1,17 @@
+.status-card {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 150px;
+}
+.status-card.positivo { background: #c8e6c9; border: 1px solid #4caf50; }
+.status-card.negativo { background: #ffcdd2; border: 1px solid #f44336; }
+.status-card.neutro { background: #fff9c4; border: 1px solid #fdd835; }
+.status-card.indefinido { background: #e0e0e0; border: 1px solid #9e9e9e; }
+.status-header { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.icon { font-size: 1.5rem; font-weight: bold; }
+.label { font-weight: 600; }
+.value { font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0; }
+.positivo .value { color: #2e7d32; }
+.negativo .value { color: #c62828; }
+.interpretacion { font-size: 0.85rem; color: #555; text-transform: capitalize; }

@@ -1,0 +1,16 @@
+<h2>{{ editando ? 'Editar' : 'Nueva' }} actividad</h2>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <label>Nombre *<input name="nombre" ngModel [required]="true" [ngModel]="actividad?.nombre || ''"></label>
+  <label>Descripción<textarea name="descripcion" ngModel [ngModel]="actividad?.descripcion || ''"></textarea></label>
+  <label>BAC (Presupuesto) *<input type="number" step="0.01" name="presupuesto" ngModel [required]="true" [ngModel]="actividad?.presupuesto || ''"></label>
+  <label>% Planificado *<input type="number" step="0.01" name="porcentaje_avance_planificado" ngModel [required]="true" [ngModel]="actividad?.porcentaje_avance_planificado || ''"></label>
+  <label>% Real *<input type="number" step="0.01" name="porcentaje_avance_real" ngModel [required]="true" [ngModel]="actividad?.porcentaje_avance_real || ''"></label>
+  <label>AC (Costo real) *<input type="number" step="0.01" name="costo_real" ngModel [required]="true" [ngModel]="actividad?.costo_real || ''"></label>
+  <label>Recursos<input name="recursos" ngModel [ngModel]="actividad?.recursos || ''"></label>
+  <label>Fecha inicio<input type="date" name="fecha_inicio" ngModel [ngModel]="actividad?.fecha_inicio || ''"></label>
+  <label>Fecha fin<input type="date" name="fecha_fin" ngModel [ngModel]="actividad?.fecha_fin || ''"></label>
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="cancelar.emit()">Cancelar</button>
+  </div>
+</form>

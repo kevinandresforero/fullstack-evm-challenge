@@ -1,0 +1,8 @@
+<div class="status-card {{ cssClass }}">
+  <div class="status-header">
+    <span class="icon">{{ icono }}</span>
+    <span class="label">{{ label }}</span>
+  </div>
+  <div class="value" *ngIf="value !== null">{{ value | number:'1.2f' }}</div>
+  <div class="interpretacion">{{ interpretacion }}</div>
+</div>

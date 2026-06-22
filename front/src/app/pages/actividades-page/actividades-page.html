@@ -1,0 +1,29 @@
+<h1 *ngIf="proyecto">Actividades: {{ proyecto.nombre }}</h1>
+<button (click)="abrirFormulario()">+ Nueva actividad</button>
+<a [routerLink]="['/dashboard', proyectoId]">Ver dashboard EVM</a>
+<app-actividad-form *ngIf="mostrarFormulario" [actividad]="actividadEditando" (guardar)="onGuardar($event)" (cancelar)="onCancelar()"></app-actividad-form>
+<table *ngIf="actividades.length > 0">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>BAC</th>
+      <th>% Plan</th>
+      <th>% Real</th>
+      <th>AC</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of actividades">
+      <td>{{ a.nombre }}</td>
+      <td>{{ a.presupuesto | number:'1.2f' }}</td>
+      <td>{{ a.porcentaje_avance_planificado }}</td>
+      <td>{{ a.porcentaje_avance_real }}</td>
+      <td>{{ a.costo_real | number:'1.2f' }}</td>
+      <td>
+        <button (click)="editar(a)">Editar</button>
+        <button (click)="eliminar(a.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
