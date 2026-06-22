@@ -1,0 +1,35 @@
+ESTADO_ACTIVO = "activo"
+ESTADO_INACTIVO = "inactivo"
+
+ESTADOS_VALIDOS = {ESTADO_ACTIVO, ESTADO_INACTIVO}
+
+ERROR_PROYECTO_NO_ENCONTRADO = "Proyecto no encontrado"
+ERROR_ACTIVIDAD_NO_ENCONTRADA = "Actividad no encontrada"
+ERROR_RECURSO_NO_ENCONTRADO = "Recurso no encontrado"
+ERROR_TIPO_RECURSO_NO_ENCONTRADO = "Tipo de recurso no encontrado"
+ERROR_ACTIVIDAD_DETALLE_NO_ENCONTRADO = "Detalle de actividad no encontrado"
+ERROR_PROYECTO_SIN_ACTIVIDADES = "El proyecto no tiene actividades registradas"
+ERROR_CPI_INDEFINIDO = "CPI indefinido (AC es cero en todas las actividades)"
+ERROR_SPI_INDEFINIDO = "SPI indefinido (PV es cero en todas las actividades)"
+ERROR_PRESUPUESTO_INVALIDO = "El presupuesto debe ser mayor a cero"
+ERROR_PORCENTAJE_INVALIDO = "El porcentaje debe estar entre 0 y 100"
+ERROR_COSTO_INVALIDO = "El costo real no puede ser negativo"
+
+CPI_SOBRE_PRESUPUESTO = "sobre presupuesto"
+CPI_BAJO_PRESUPUESTO = "bajo presupuesto"
+CPI_EN_PRESUPUESTO = "en presupuesto"
+
+SPI_ATRASADO = "atrasado"
+SPI_ADELANTADO = "adelantado"
+SPI_EN_CRONOGRAMA = "en cronograma"
+
+BAC = "BAC"
+PV = "PV"
+EV = "EV"
+AC = "AC"
+CV = "CV"
+SV = "SV"
+CPI = "CPI"
+SPI = "SPI"
+EAC = "EAC"
+VAC = "VAC"
